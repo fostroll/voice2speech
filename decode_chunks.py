@@ -10,7 +10,7 @@ from uuid import uuid4
 
 USE_CLOUD = False
 
-servers = ['192.168.0.1:70071', '192.168.0.1:70072', '192.168.0.1:70073']
+servers = ['192.168.0.1:7071', '192.168.0.1:7072', '192.168.0.1:7073']
 cloud = {'address': 'asr.yandex.net',
          'uuid': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
          'key': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'}
