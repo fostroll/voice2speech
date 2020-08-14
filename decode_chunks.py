@@ -14,7 +14,7 @@ servers = ['192.168.0.1:7071', '192.168.0.1:7072', '192.168.0.1:7073']
 cloud = {'address': 'asr.yandex.net',
          'uuid': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
          'key': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'}
-backup_dirs = ['chunks_1', 'chunks_2', 'chunks_3']
+backup_dirs = ['chunks_0', 'chunks_1', 'chunks_2']
 
 chunks_dir = 'chunks'
 chunks_ext = 'wav'
