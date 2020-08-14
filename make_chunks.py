@@ -11,6 +11,8 @@ import sys
 procs = int(sys.argv[1]) if len(sys.argv) > 1 else 1
 if procs == 0: procs = mp.cpu_count() + 1
 
+INCLUDE_PATH = False
+
 input_file_masks = ['wav/*.wav']
 output_dir = 'chunks'
 tmp_dir = './tmp'
@@ -22,13 +24,23 @@ min_silence_len = 1.0 # sec
 keep_silence = 0.5 # sec
 min_chunk_len = 2.0 # sec (w/o keep_silence)
 
-rx_fname = re.compile('([^/]+)\.[^.]+$')
-rx_silence_start = re.compile('^\[silencedetect \@ 0x[0-9a-f]+\] silence_start: (\d+\.\d+)')
-rx_silence_end = re.compile('^\[silencedetect \@ 0x[0-9a-f]+\] silence_end: (\d+\.\d+)')
+#rx_fname = re.compile('([^/]+)\.[^.]+$')
+rx_silence_start = \
+    re.compile('^\[silencedetect \@ 0x[0-9a-f]+\] silence_start: (\d+\.\d+)')
+rx_silence_end = \
+    re.compile('^\[silencedetect \@ 0x[0-9a-f]+\] silence_end: (\d+\.\d+)')
 def get_first_chunks(sound_file):
     map_line = None
     log_line = sound_file + ': '
-    sound_file_for_log = rx_fname.search(sound_file).group(1)
+    #sound_file_for_log = rx_fname.search(sound_file).group(1)
+    path, sound_file_for_log = os.path.split(sound_file) \
+                                      .rsplit(sep='.', maxsplit=1)
+    if INCLUDE_PATH:
+        drive, path = os.path.splitdrive(path)
+        path = path.replace(os.path.sep, '|')
+        if drive:
+            path = drive + ':' + path
+        sound_file_for_log = path + '|' + sound_file_for_log
     sound_file_map_fn = output_dir + '/' + sound_file_for_log + '.map'
 
     print(sound_file_for_log)
