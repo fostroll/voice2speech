@@ -33,8 +33,8 @@ def get_first_chunks(sound_file):
     map_line = None
     log_line = sound_file + ': '
     #sound_file_for_log = rx_fname.search(sound_file).group(1)
-    path, sound_file_for_log = os.path.split(sound_file) \
-                                      .rsplit(sep='.', maxsplit=1)
+    path, sound_file_for_log = os.path.split(sound_file)
+    sound_file_for_log = sound_file_for_log.rsplit(sep='.', maxsplit=1)[0]
     if INCLUDE_PATH:
         drive, path = os.path.splitdrive(path)
         path = path.replace(os.path.sep, '|')
