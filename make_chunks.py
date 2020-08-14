@@ -24,7 +24,6 @@ min_silence_len = 1.0 # sec
 keep_silence = 0.5 # sec
 min_chunk_len = 2.0 # sec (w/o keep_silence)
 
-#rx_fname = re.compile('([^/]+)\.[^.]+$')
 rx_silence_start = \
     re.compile('^\[silencedetect \@ 0x[0-9a-f]+\] silence_start: (\d+\.\d+)')
 rx_silence_end = \
@@ -32,7 +31,6 @@ rx_silence_end = \
 def get_first_chunks(sound_file):
     map_line = None
     log_line = sound_file + ': '
-    #sound_file_for_log = rx_fname.search(sound_file).group(1)
     path, sound_file_for_log = os.path.split(sound_file)
     sound_file_for_log = sound_file_for_log.rsplit(sep='.', maxsplit=1)[0]
     if INCLUDE_PATH:
